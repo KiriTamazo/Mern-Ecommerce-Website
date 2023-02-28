@@ -1,8 +1,12 @@
+import Featured from "../../components/Featured/Featured";
 import "./Home.module.scss";
-import React from "react";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <section className="home section">
+      <Featured />
+    </section>
+  );
 };
 
 export default Home;

@@ -1,5 +1,4 @@
 import './Message.module.scss'
-import React from "react";
 
 const Message = () => {
   return (

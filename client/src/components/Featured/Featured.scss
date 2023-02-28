@@ -1,0 +1,99 @@
+.featured {
+  height: 600px;
+  display: flex;
+  min-height: calc(100vh - 91px);
+  justify-content: center;
+  background-color: var(--nav-bg-color);
+  .container {
+    width: 1400px;
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+    .left {
+      display: flex;
+      flex: 2;
+      flex-direction: column;
+      gap: 30px;
+      h1 {
+        font-size: 3rem;
+      }
+      i {
+        font-weight: 300;
+      }
+      .search {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 5px;
+        background-color: var(--input-bg-color);
+        border-radius: 5px;
+        .searchInput {
+          flex: 2;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          img {
+            width: 20px;
+            height: 20px;
+            margin: 10px;
+          }
+          input {
+            border: none;
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+            color: var(--text-color);
+            &::placeholder {
+              color: #868591;
+            }
+          }
+        }
+        button {
+          width: 120px;
+          height: 50px;
+          text-align: center;
+          border-radius: 5px;
+          background-color: #3d5afe;
+          color: var(--btn-text-color);
+          transition: all 0.5s ease;
+          &:hover {
+            background-color: var(--btn-bg-color);
+            color: var(--btn-color);
+          }
+        }
+      }
+      .popular {
+        display: flex;
+        align-items: center;
+        span {
+        }
+        button {
+          color: white;
+          background-color: transparent;
+          border: 1px solid #fff;
+          padding: 5px 10px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          margin: 0 5px;
+          transition: all 0.5s ease;
+          &:hover {
+            border-color: var(--btn-bg-color);
+            background-color: var(--btn-bg-color);
+            color: var(--btn-color);
+          }
+        }
+      }
+    }
+    .right {
+      height: 100%;
+      flex: 1;
+      img {
+        max-width: 500px;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

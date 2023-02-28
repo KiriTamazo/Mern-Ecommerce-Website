@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
+@import "./variable.scss";
+
+html[data-theme="light"] {
+  --primary: #{$primary-500};
+  --scrollbar: #{$dark-50};
+  --text-color: #{$dark-500};
+  --bg-color: #{$text};
+  --btn-color: #{$text};
+  --btn-bg-color: #{$primary-500};
+  --nav-bg-color: #{$primary-600};
+  --nav-text-color: #{$text};
+  --modal-shadow: #{$dark-50};
+  --input-bg-color: #{$text};
+}
+
+html[data-theme="dark"] {
+  --primary: #{$primary-100};
+  --scrollbar: #{$dark-50};
+  --text-color: #{$text};
+  --bg-color: #{$dark-500};
+  --btn-color: #{$dark-300};
+  --btn-bg-color: #{$primary-50};
+  --nav-bg-color: #{$primary-600};
+  --nav-text-color: #{$text};
+  --input-bg-color: #{$dark-400};
+  
+}
+::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--scrollbar);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  color: inherit;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+button {
+  all: unset;
+  cursor: pointer;
+}
+.section {
+  height: 100vh;
+}
