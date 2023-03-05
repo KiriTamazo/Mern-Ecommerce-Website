@@ -5,26 +5,63 @@ html[data-theme="light"] {
   --primary: #{$primary-500};
   --scrollbar: #{$dark-50};
   --text-color: #{$dark-500};
+  --light-text-color: #{$dark-200};
+  --gray-bg: #{$light-text};
+
   --bg-color: #{$text};
   --btn-color: #{$text};
   --btn-bg-color: #{$primary-500};
-  --nav-bg-color: #{$primary-600};
+  --btn-hover-bg: #{$primary-400};
+  --nav-bg-color: #{$dark-600};
+  --nav-active-bg: #{$text};
   --nav-text-color: #{$text};
   --modal-shadow: #{$dark-50};
+  --modal-bg-color: #{$text};
+  --modal-color: #{$dark-500};
   --input-bg-color: #{$text};
+  --input-gray-bg: #{$light};
+  --input-color: #{$dark-50};
+  --carousel-arr-color: #{$primary-500};
+  --carousel-arr-bg-color: #{$text};
+  --project-carousel-bg-color: #{$text};
+  --project-carousel-color: #{$dark-500};
+  --gig-bg-color: #{$text};
+  --gig-color: #{$dark-100};
+  --border-color: #{$light-text};
+  --footer-bg-color: #{$text};
+  --footer-color: #{$dark-50};
 }
 
 html[data-theme="dark"] {
   --primary: #{$primary-100};
   --scrollbar: #{$dark-50};
   --text-color: #{$text};
+  --light-text-color: #{$light-text};
+  --gray-bg: #{$dark-400};
+
   --bg-color: #{$dark-500};
   --btn-color: #{$dark-300};
-  --btn-bg-color: #{$primary-50};
+  --btn-bg-color: #{$primary-100};
+  --btn-hover-bg: #{$primary-50};
+
   --nav-bg-color: #{$primary-600};
   --nav-text-color: #{$text};
+  --nav-active-bg: #{$dark-400};
+
+  --modal-bg-color: #{$dark-300};
+  --modal-color: #{$light-text};
   --input-bg-color: #{$dark-400};
-  
+  --input-gray-bg: #{$dark-400};
+  --input-color: #{$light-text};
+  --carousel-arr-color: #{$primary-200};
+  --carousel-arr-bg-color: #{$dark-400};
+  --project-carousel-bg-color: #{$dark-400};
+  --project-carousel-color: #{$text};
+  --gig-bg-color: #{$text};
+  --gig-color: #{$light-text};
+  --border-color: #{$dark-400};
+  --footer-bg-color: #{$dark-500};
+  --footer-color: #{$light-text};
 }
 ::-webkit-scrollbar-track {
   background-color: var(--bg-color);
@@ -49,6 +86,7 @@ html[data-theme="dark"] {
 }
 html,
 body {
+  // font-size: 16px;
   height: 100%;
   font-family: "Poppins", sans-serif;
   background-color: var(--bg-color);
@@ -56,6 +94,7 @@ body {
 }
 body {
   line-height: 1.5;
+
   -webkit-font-smoothing: antialiased;
 }
 img,
@@ -97,6 +136,22 @@ button {
   all: unset;
   cursor: pointer;
 }
-.section {
-  height: 100vh;
+.container {
+  padding: 0 20px;
+  width: 100%;
+  @media (min-width: 500px) {
+    padding: 0 26px;
+  }
+  @media (min-width: 768px) {
+    padding: 0 32px;
+  }
+  // @media (min-width: 992px) {
+  //   padding: 0 40px;
+  // }
+  @media (min-width: 1200px) {
+    max-width: 1400px;
+  }
+  // @media (min-width: 1450px) {
+  //   width: 1400px;
+  // }
 }

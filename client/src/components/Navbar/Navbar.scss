@@ -2,19 +2,29 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   transition: all 0.5s ease;
   background-color: var(--nav-bg-color);
   color: var(--nav-text-color);
-
+  z-index: 100;
   .container {
-    width: 1400px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    .mobile-menu {
+      svg {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
     .logo {
       font-size: 34px;
       font-weight: bold;
@@ -27,13 +37,18 @@
       gap: 24px;
       align-items: center;
       font-weight: 500;
-
+      .link {
+        display: none;
+      }
       .user {
         display: flex;
         gap: 10px;
         align-items: center;
         cursor: pointer;
         position: relative;
+        span {
+          display: none;
+        }
         img {
           width: 32px;
           height: 32px;
@@ -46,8 +61,8 @@
           right: 0;
           padding: 20px;
           border-radius: 5px;
-          background-color: var(--bg-color);
-          color: var(--text-color);
+          background-color: var(--modal-bg-color);
+          color: var(--modal-color);
           font-weight: 300;
           display: flex;
           flex-direction: column;
@@ -64,7 +79,7 @@
         }
       }
 
-      button {
+      .join {
         padding: 10px 20px;
         border-radius: 5px;
         border: 1px solid var(--nav-text-color);
@@ -82,16 +97,19 @@
     width: 100%;
     height: 0;
     border: 0.5px solid #868591;
+    display: none;
   }
   .menu {
-    width: 1400px;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     font-weight: 300;
+    display: none;
+    width: 100%;
+    display: none;
   }
   &.active {
-    background-color: var(--bg-color);
+    background-color: var(--nav-active-bg);
     color: var(--text-color);
     .links button {
       border-color: var(--btn-bg-color);
@@ -99,6 +117,35 @@
       &:hover {
         color: var(--nav-text-color);
       }
+    }
+  }
+}
+@media (min-width: 540px) {
+  .navbar .container .links .user span {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .navbar {
+    .container {
+      .mobile-menu {
+        display: none;
+      }
+      .links {
+        .link {
+          display: block;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  .navbar .container {
+    hr {
+      display: block;
+    }
+    .menu {
+      display: flex;
     }
   }
 }

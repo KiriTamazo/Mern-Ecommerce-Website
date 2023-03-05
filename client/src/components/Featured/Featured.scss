@@ -1,14 +1,14 @@
 .featured {
-  height: 600px;
   display: flex;
-  min-height: calc(100vh - 91px);
   justify-content: center;
-  background-color: var(--nav-bg-color);
+  background-color: #253698;
   .container {
-    width: 1400px;
+    padding-top: 120px;
+    padding-bottom: 80px;
     display: flex;
     align-items: center;
     color: white;
+    flex-direction: column;
     gap: 10px;
     .left {
       display: flex;
@@ -16,28 +16,30 @@
       flex-direction: column;
       gap: 30px;
       h1 {
-        font-size: 3rem;
+        font-size: 1.6rem;
       }
       i {
         font-weight: 300;
       }
       .search {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
-        padding: 5px;
-        background-color: var(--input-bg-color);
+        gap: 20px;
         border-radius: 5px;
         .searchInput {
-          flex: 2;
+          width: 100%;
           display: flex;
           align-items: center;
           gap: 10px;
+          padding: 10px;
+          border-radius: 5px;
+          background-color: var(--input-bg-color);
+
           img {
             width: 20px;
             height: 20px;
-            margin: 10px;
           }
           input {
             border: none;
@@ -51,7 +53,7 @@
           }
         }
         button {
-          width: 120px;
+          width: 100%;
           height: 50px;
           text-align: center;
           border-radius: 5px;
@@ -67,8 +69,9 @@
       .popular {
         display: flex;
         align-items: center;
-        span {
-        }
+        flex-wrap: wrap;
+        gap: 15px;
+
         button {
           color: white;
           background-color: transparent;
@@ -76,7 +79,7 @@
           padding: 5px 10px;
           border-radius: 20px;
           font-size: 0.9rem;
-          margin: 0 5px;
+
           transition: all 0.5s ease;
           &:hover {
             border-color: var(--btn-bg-color);
@@ -87,12 +90,69 @@
       }
     }
     .right {
+      display: none;
       height: 100%;
       flex: 1;
       img {
-        max-width: 500px;
+        max-width: 350px;
         height: 100%;
         object-fit: cover;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .featured {
+    .container {
+      .left {
+        .search {
+          padding: 5px;
+          flex-direction: row;
+          background-color: var(--input-bg-color);
+          .searchInput {
+            width: 100%;
+            padding: 0 5px;
+            input {
+              width: 100%;
+            }
+            img {
+              margin: 10px;
+            }
+          }
+          button {
+            width: 120px;
+          }
+        }
+      }
+      .right {
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  .featured {
+    height: 100vh;
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+      flex-direction: row;
+      .left {
+        max-width: 650px;
+        gap: 40px;
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      .right {
+        display: flex;
+        align-items: flex-end;
+        img {
+          max-width: 600px;
+          max-height: 600px;
+        }
       }
     }
   }

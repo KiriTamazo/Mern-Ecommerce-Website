@@ -1,0 +1,107 @@
+.footer {
+  background-color: var(--footer-bg-color);
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--footer-color);
+
+  .top {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--footer-color);
+    .item {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+
+      li {
+        display: flex;
+        flex-direction: column;
+
+        gap: 20px;
+        h2 {
+          margin-bottom: 5px;
+          font-size: 0.9rem;
+        }
+        span {
+          font-size: 0.8rem;
+          color: var(--light-text-color);
+          cursor: pointer;
+          transition: all 0.5s ease;
+          border: 2px solid transparent;
+          &:hover {
+            padding-left: 10px;
+
+            border-left-color: #928eff;
+          }
+        }
+      }
+    }
+  }
+  .bottom {
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-direction: column;
+
+      h1 {
+        font-size: 1.2rem;
+        display: none;
+      }
+      p {
+        font-size: 0.7rem;
+        color: var(--light-text-color);
+      }
+    }
+    .right {
+      p {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+@media (min-width: 500px) {
+  .footer {
+    .top .item {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bottom {
+      flex-direction: row;
+      align-items: center;
+      .left {
+        flex-direction: row;
+        gap: 20px;
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  .footer {
+    .top {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      .item {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .bottom {
+      flex-direction: row;
+      align-items: center;
+      .left {
+        flex-direction: row;
+        gap: 20px;
+        h1 {
+          display: block;
+        }
+      }
+    }
+  }
+}

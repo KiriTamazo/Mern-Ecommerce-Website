@@ -1,0 +1,192 @@
+.gigs {
+  display: flex;
+  justify-content: center;
+  .container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .breadcrumb {
+      font-weight: 300;
+      font-size: 0.65rem;
+      color: var(--gig-color);
+    }
+    h1 {
+    }
+    p {
+      color: var(--gig-color);
+      font-weight: 300;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    // Menu //
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      .left {
+        display: flex;
+        align-items: start;
+        color: var(--gig-color);
+        gap: 10px;
+        flex-direction: column;
+        width: 100%;
+        span {
+        }
+        .inputField {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+          input {
+            padding: 5px 10px;
+            border-radius: 5px;
+
+            outline: none;
+            border: none;
+            color: var(--text-color);
+            background-color: var(--input-gray-bg);
+            &::placeholder {
+              color: var(--input-color);
+            }
+          }
+          button {
+            background-color: var(--btn-bg-color);
+            color: var(--btn-color);
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-align: center;
+          }
+        }
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: relative;
+        width: 100%;
+        .sortBy {
+          color: var(--gig-color);
+          font-weight: 300;
+        }
+        .sortType {
+          font-weight: 500;
+          cursor: pointer;
+          background-color: var(--input-gray-bg);
+          padding: 5px 10px;
+          border-radius: 5px;
+          display: flex;
+          gap: 10px;
+          .downArrow {
+            width: 15px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+          }
+          .open {
+            transform: rotate(180deg);
+          }
+        }
+
+        .rightMenu {
+          min-width: 120px;
+          position: absolute;
+          background-color: var(--modal-bg-color);
+          color: var(--modal-color);
+          border-radius: 5px;
+          padding: 10px;
+          position: absolute;
+          top: 105%;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          box-shadow: 0 1px 4px var(--modal-shadow);
+          visibility: visible;
+          opacity: 1;
+          transition: all 0.5s ease;
+
+          &[aria-hidden="false"] {
+            visibility: hidden;
+            opacity: 0;
+          }
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    // Cards //
+    .cards {
+      margin: 30px 0;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+  }
+}
+@media (min-width: 540px) {
+  .gigs {
+    .container {
+      .menu {
+        flex-wrap: nowrap;
+        align-items: start;
+        .right {
+          flex-direction: column;
+          align-items: flex-end;
+        }
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(min-content, 1fr));
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .gigs {
+    .container {
+      .menu {
+        margin: 20px 0;
+        flex-wrap: nowrap;
+        align-items: start;
+
+        .left {
+          align-items: center;
+          flex-direction: row;
+          .inputField {
+            flex-direction: row;
+            input {
+              max-width: 150px;
+            }
+          }
+        }
+        .right {
+          flex-direction: row;
+          align-items: center;
+          justify-content: end;
+        }
+      }
+      .cards {
+        grid-template-columns: repeat(3, minmax(min-content, 1fr));
+      }
+    }
+  }
+}
+@media (min-width: 992px) {
+  .gigs {
+    .container {
+      .menu .left .inputField input {
+        max-width: 300px;
+      }
+      .cards {
+        grid-template-columns: repeat(4, minmax(min-content, 1fr));
+      }
+    }
+  }
+}

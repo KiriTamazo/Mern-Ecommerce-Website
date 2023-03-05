@@ -1,0 +1,110 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.711);
+  z-index: 999;
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 300ms ease;
+
+  &[aria-hidden="true"] {
+    visibility: visible;
+    opacity: 1;
+    .sidebar {
+      opacity: 1;
+      transform: translateX(273px);
+    }
+  }
+  .sidebar {
+    width: 45%;
+    opacity: 0;
+    height: 100vh;
+    background-color: var(--nav-active-bg);
+    position: fixed;
+    transition: all 200ms ease;
+    top: 0;
+    left: -273px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .logo {
+      background-color: var(--bg-color);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .close {
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 2px;
+        width: 30px;
+        height: 30px;
+        background-color: var(--btn-bg-color);
+        color: var(--btn-color);
+        &:hover {
+          background-color: var(--btn-hover-bg);
+        }
+      }
+    }
+    .accordian {
+      margin: 10px 0;
+      padding: 10px 20px;
+      background-color: var(--nav-active-bg);
+      color: var(--light-text-color);
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0;
+        h3 {
+          font-weight: 500;
+          font-size: 0.8rem;
+        }
+        svg {
+          width: 20px;
+          height: 20px;
+          transition: all 200ms ease;
+        }
+        .active {
+          transform: rotate(180deg);
+        }
+      }
+      .menu {
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        a {
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px;
+      margin: 10px 0 20px 0;
+      color: var(--light-text-color);
+      hr {
+        height: 0;
+        margin: 10px 0;
+        border: 1px solid var(--footer-color);
+      }
+      .link {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .overlay {
+    display: none;
+  }
+}
