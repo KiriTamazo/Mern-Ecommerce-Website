@@ -1,19 +1,9 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const userSchema = new Schema(
+const orderSchema = new Schema(
   {
-    userName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
+    gigId: {
       type: String,
       required: true,
     },
@@ -21,31 +11,39 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
-    country: {
+    title: {
       type: String,
       required: true,
     },
-    phone: {
-      type: String,
-      required: false,
+    price: {
+      type: Number,
+      required: true,
     },
-    desc: {
+    sellerId: {
       type: String,
-      required: false,
+      required: true,
     },
-    isSeller: {
+    buyerId: {
+      type: String,
+      required: true,
+    },
+    isCompleted: {
       type: Boolean,
       default: false,
+    },
+    payment_intent: {
+      type: String,
+      required: true,
     },
   },
   {
     timestamps: true,
   }
 );
-userSchema.method("toJSON", function () {
+orderSchema.method("toJSON", function () {
   const { __v, _id, ...object } = this.toObject();
   object.id = _id;
   console.log("object", object);
   return object;
 });
-export default mongoose.model("User", userSchema);
+export default mongoose.model("Order", orderSchema);
