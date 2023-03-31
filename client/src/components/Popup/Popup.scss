@@ -1,0 +1,49 @@
+.helper-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  //   opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease-in-out;
+ 
+  .helper-popup.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .helper-popup .message {
+    margin-bottom: 10px;
+  }
+
+  .helper-popup .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ccc;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .helper-popup .close-btn:hover {
+    color: #333;
+  }
+}
+.helper-icon {
+  width: 50px;
+  border-radius: 50%;
+  background-color: var(--foreground);
+  color: var(--text-color);
+  cursor: pointer;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}

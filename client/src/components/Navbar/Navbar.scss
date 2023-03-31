@@ -6,10 +6,31 @@
   top: 0;
   right: 0;
   left: 0;
-  transition: all 0.5s ease;
-  background-color: var(--nav-bg-color);
+  background-color: transparent;
   color: var(--nav-text-color);
   z-index: 100;
+  animation-delay: 500ms;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  &.shadow {
+    box-shadow: 0 1px 5px var(--shadow);
+  }
+  &.animate {
+    animation-name: slideInDown;
+  }
+  &.active {
+    background-color: var(--nav-active-bg);
+    color: var(--text-color);
+
+    .links button {
+      border-color: var(--btn-bg-color);
+      color: var(--btn-bg-color);
+      &:hover {
+        color: var(--nav-text-color);
+      }
+    }
+  }
+
   .container {
     width: 100%;
     display: flex;
@@ -42,18 +63,19 @@
       }
       .user {
         display: flex;
-        gap: 10px;
+        gap: 5px;
         align-items: center;
         cursor: pointer;
         position: relative;
         span {
           display: none;
+          font-size: 0.8rem;
         }
         img {
           width: 32px;
           height: 32px;
           border-radius: 50%;
-          object-fit: contain;
+          object-fit: cover;
         }
         .options {
           position: absolute;
@@ -66,15 +88,22 @@
           font-weight: 300;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 20px;
           width: 200px;
           transition: all 0.5s ease;
           visibility: hidden;
           opacity: 0;
-          box-shadow: 0 4px 10px var(--modal-shadow);
+          box-shadow: 0 4px 10px var(--shadow);
           &[aria-hidden="true"] {
             visibility: visible;
             opacity: 1;
+          }
+          .logout {
+            text-align: center;
+            background-color: var(--error-text);
+            color: var(--btn-color);
+            border-radius: 5px;
+            padding: 5px 0;
           }
         }
       }
@@ -82,12 +111,13 @@
       .join {
         padding: 10px 20px;
         border-radius: 5px;
-        border: 1px solid var(--nav-text-color);
+        border: 2px solid var(--btn-bg-color);
         transition: all 0.5s ease;
 
         &:hover {
           background-color: var(--btn-bg-color);
           border-color: var(--btn-bg-color);
+          color: #fff;
         }
       }
     }
@@ -107,17 +137,6 @@
     display: none;
     width: 100%;
     display: none;
-  }
-  &.active {
-    background-color: var(--nav-active-bg);
-    color: var(--text-color);
-    .links button {
-      border-color: var(--btn-bg-color);
-      color: var(--btn-bg-color);
-      &:hover {
-        color: var(--nav-text-color);
-      }
-    }
   }
 }
 @media (min-width: 540px) {
@@ -148,4 +167,35 @@
       display: flex;
     }
   }
+}
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    -webkit-transform: translateY(0, 100%, 0);
+    transform: translateY(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translateY(0, -100%, 0);
+    transform: translateY(0, -100%, 0);
+  }
+}
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+  animation-name: slideInUp;
+}
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
 }

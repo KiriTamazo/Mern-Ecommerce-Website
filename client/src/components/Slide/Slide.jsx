@@ -2,10 +2,7 @@ import Slider from "infinite-react-carousel";
 import "./Slide.scss";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-const Slide = ({ slidesToShow, arrowsScroll, children }) => {
-  const { pathname } = useLocation();
-  console.log(pathname);
+const Slide = ({ slidesToShow, arrowsScroll, style, children }) => {
   const [size, setSize] = useState(null);
   const handleResize = () => {
     const width = window.innerWidth;
@@ -29,14 +26,14 @@ const Slide = ({ slidesToShow, arrowsScroll, children }) => {
     handleResize();
   }, []);
 
+  // Media query for No of Slides to Show
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log(size, "size");
   return (
-    <section className="slide">
+    <section className={`slide ${style}`}>
       <div className="container">
         <Slider
           prevArrow={<ChevronLeftIcon className="carousel-arrow-icon" />}

@@ -1,0 +1,91 @@
+.login {
+  background-color: var(--gray-bg);
+  display: flex;
+  justify-content: center;
+  .container {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+
+    h1 {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .errMessage {
+      text-align: center;
+      text-transform: capitalize;
+      padding: 10px;
+      background-color: var(--error-text);
+      border-radius: 5px;
+      color: var(--btn-color);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 0px;
+      background-color: var(--bg-color);
+      border-radius: 5px;
+      padding: 30px 25px;
+      margin: 0 auto;
+    }
+    .formControl {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      justify-content: space-between;
+    }
+
+    .sellerText {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .text-field {
+      label[for="isSeller"] {
+        display: none;
+      }
+    }
+    button {
+      background-color: var(--btn-bg-color);
+      color: var(--btn-color);
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+      transition: all 0.5s ease;
+      &:hover {
+        background-color: var(--btn-hover-bg);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .login-register-link {
+    font-size: 0.7rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--primary);
+  }
+}
+@media (min-width: 540px) {
+  .login {
+    .container {
+      form {
+        min-width: 450px;
+      }
+      .formControl {
+        flex-direction: row;
+      }
+    }
+  }
+}

@@ -1,24 +1,25 @@
 import "./Navbar.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Sidebar from "../Sidebar/Sidebar";
 import Switch from "../Switch/Switch";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import useScrollLock from "../../hooks/useScrollLock";
-const currentUser = {
-  id: 1,
-  userName: "John Doe",
-  isSeller: true,
-};
+import apiRequest from "../../ultis/apiRequest";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-  const { pathname } = useLocation();
   const [openSidebar, setOpenSidebar] = useState(false);
-
   const modalRef = useRef();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  useClickOutSide(modalRef, () => setOpen(false));
+  const { lockScroll, unlockScroll } = useScrollLock();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  // For mobile sidebar
   const handleOpenSidebar = () => {
     if (openSidebar) {
       unlockScroll();
@@ -28,12 +29,19 @@ const Navbar = () => {
       lockScroll();
     }
   };
-
-  useClickOutSide(modalRef, () => setOpen(false));
-  const { lockScroll, unlockScroll } = useScrollLock();
-
+  // For loggedin user to show pop up modal for more option
   const toggleModal = () => {
     setOpen((prev) => !prev);
+  };
+  // For Log out
+  const handleLogOut = async () => {
+    try {
+      await apiRequest.post("auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onScroll = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -49,7 +57,11 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={active || pathname !== "/" ? "navbar active" : "navbar"}
+        className={
+          active || pathname !== "/"
+            ? `navbar active  ${window.scrollY > 0 ? "shadow animate" : ""}`
+            : "navbar "
+        }
       >
         <nav className="container">
           <div className="mobile-menu" onClick={handleOpenSidebar}>
@@ -64,50 +76,54 @@ const Navbar = () => {
           </div>
           {/* Nav Links */}
           <ul className="links">
-            <Link className="link" to="/">
-              Allure Bussiness
-            </Link>
+            {/* <a className="link" href="#business">
+              Bussiness
+            </a>
             <Link className="link" to="/">
               Explore
-            </Link>
-            <Link className="link" to="/">
-              English
-            </Link>
-            {!currentUser?.isSeller && (
-              <Link className="link" to="/">
-                Become a Seller
-              </Link>
-            )}
+            </Link> */}
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "links active" : "links"
+              }
+              to="/gigs"
+            >
+              Gigs
+            </NavLink>
+
             {!currentUser && (
-              <Link className="link" to="/">
+              <Link className="link" to="/login">
                 Sign In
               </Link>
             )}
-            {!currentUser && <button className="join">Join</button>}
+            {!currentUser && (
+              <Link to="/register" className="join">
+                Join
+              </Link>
+            )}
             {currentUser && (
               <div className="user" onClick={toggleModal}>
-                <img
-                  src="https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
-                  alt=""
-                />
+                <img src={currentUser?.img || "/img/noavatar.jpg"} alt="" />
                 <span>{currentUser?.userName}</span>
                 <div ref={modalRef} aria-hidden={open} className="options">
                   {currentUser?.isSeller && (
                     <>
-                      <Link to="/mygigs">Gigs</Link>
+                      <Link to="/myGigs">My Gigs</Link>
                       <Link to="/add">Add New Gig</Link>
                     </>
                   )}
-                  <Link to="/orders">Orders</Link>
-                  <Link to="/messages">Messages</Link>
-                  <Link to="">Logout</Link>
+                  {/* <Link to="/orders">Orders</Link>
+                  <Link to="/messages">Messages</Link> */}
+                  <Link className="logout" onClick={handleLogOut}>
+                    Logout
+                  </Link>
                 </div>
               </div>
             )}
             <Switch />
           </ul>
         </nav>
-        {active && <hr />}
+        {/* {active && <hr />}
         {(active || pathname !== "/") && (
           <ul className="menu">
             <div className="container">
@@ -120,7 +136,7 @@ const Navbar = () => {
               <Link to="/">Programming & Tech</Link>
             </div>
           </ul>
-        )}
+        )} */}
       </header>
       <Sidebar
         openSidebar={openSidebar}

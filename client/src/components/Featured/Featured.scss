@@ -37,9 +37,10 @@
           border-radius: 5px;
           background-color: var(--input-bg-color);
 
-          img {
+          .search-icon {
             width: 20px;
             height: 20px;
+            color: #868591;
           }
           input {
             border: none;
@@ -140,7 +141,7 @@
       padding-bottom: 0;
       flex-direction: row;
       .left {
-        max-width: 650px;
+        max-width: 750px;
         gap: 40px;
         h1 {
           font-size: 2rem;

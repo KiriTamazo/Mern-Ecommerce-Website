@@ -1,25 +1,55 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GigCard from "../../components/GigCard/GigCard";
-import { gigs } from "../../data";
+// import { gigs } from "../../data";
 import "./Gigs.scss";
+import { useQuery } from "@tanstack/react-query";
+import apiRequest from "../../ultis/apiRequest";
+import { useLocation } from "react-router-dom";
 
 const Gigs = () => {
   const [open, setOpen] = useState(false);
-  const [sort, setSort] = useState("sales");
+  const [sort, setSort] = useState("price");
+  const minRef = useRef();
+  const maxRef = useRef();
   const handleOpen = () => {
     setOpen(!open);
   };
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["gigs"],
+    queryFn: () =>
+      apiRequest
+        .get(
+          `/gigs${search ? search : "?"}&min=${minRef.current.value}&max=${
+            maxRef.current.value
+          }&sort=${sort}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+  console.log(search, "search");
+
+  console.log(data);
+  // to filter
+  const handleApply = () => {
+    refetch();
+  };
+  // for refect after sorting
+  useEffect(() => {
+    refetch();
+  }, [sort]);
 
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
   };
-  const sorts = sort === "sales";
   return (
     <section className="gigs">
       <div className="container">
-        <span className="breadcrumb">Allure > Graphics & Design</span>
+        {/* <span className="breadcrumb">Allure > Graphics & Design</span> */}
         <h1>AI Artists</h1>
         <p>
           Explore the boundaries of art and technology with Allure's AI artists
@@ -29,26 +59,26 @@ const Gigs = () => {
           <div className="left">
             <span>Budget</span>
             <div className="inputField">
-              <input type="text" placeholder="min" />
-              <input type="text" placeholder="max" />
-              <button>Apply</button>
+              <input ref={minRef} type="number" placeholder="min" />
+              <input ref={maxRef} type="number" placeholder="max" />
+              <button onClick={handleApply}>Apply</button>
             </div>
           </div>
           <div className="right" onClick={handleOpen}>
             <span className="sortBy">Sort By</span>
             <span className="sortType">
-              {sorts ? "Best Selling" : "Newest"}
+              {sort === "price" ? "Best Selling" : "Newest"}
               <ChevronDownIcon
                 className={open ? "downArrow open" : "downArrow"}
               />
             </span>
 
             <div className="rightMenu" aria-hidden={open}>
-              {sorts ? (
+              {sort === "price" ? (
                 <span onClick={() => reSort("createAt")}>Newest</span>
               ) : (
-                <span onClick={() => reSort("sales")}>Best Selling</span>
-              )}
+                <span onClick={() => reSort("price")}>Best Selling</span>
+              )}{" "}
             </div>
           </div>
         </div>
@@ -56,9 +86,11 @@ const Gigs = () => {
 
         {/* Card */}
         <div className="cards">
-          {gigs.map((item, i) => (
-            <GigCard key={i} item={item} />
-          ))}
+          {isLoading
+            ? "Loading"
+            : error
+            ? "Something went wrong!"
+            : data?.map((item) => <GigCard key={item.id} item={item} />)}
         </div>
         {/* Card */}
       </div>

@@ -5,12 +5,36 @@
   .container {
     padding-top: 120px;
     padding-bottom: 50px;
-
-    h1 {
-      width: max-content;
+    .add-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 30px;
-      color: var(--light-text-color);
-      font-weight: 300;
+      h1 {
+        width: max-content;
+        color: var(--light-text-color);
+        font-weight: 300;
+      }
+      .response-message {
+        border-radius: 5px;
+        padding: 10px 5px 10px 15px;
+        background-color: var(--success);
+        color: #000;
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: relative;
+        &[aria-errormessage="true"] {
+          background-color: var(--error-text);
+          color: var(--btn-color);
+        }
+        .close-icon {
+          width: 30px;
+          cursor: pointer;
+        }
+      }
     }
 
     .sections {
@@ -30,7 +54,6 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        justify-content: space-between;
 
         input,
         select,

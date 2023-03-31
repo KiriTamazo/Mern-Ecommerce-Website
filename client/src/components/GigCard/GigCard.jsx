@@ -1,20 +1,39 @@
 import { Link } from "react-router-dom";
 import "./GigCard.scss";
 import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
+import apiRequest from "../../ultis/apiRequest";
 const GigCard = ({ item }) => {
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["gigUser"],
+    queryFn: () =>
+      apiRequest.get(`/users/${item.userId}`).then((res) => {
+        return res.data;
+      }),
+  });
+  console.log("item", data);
   return (
-    <Link to="/gig/123">
+    <Link to={`/gig/${item.id}`}>
       <div className="gigCard">
-        <img src={item.img} alt="" />
+        <img src={item.image} alt="" />
         <div className="info">
-          <div className="user">
-            <img src={item.pp} alt="" />
-            <span>{item.username}</span>
-          </div>
+          {isLoading ? (
+            "Loading"
+          ) : error ? (
+            "Something went wrong!"
+          ) : (
+            <div className="user">
+              <img src={data.img || "/img/noavatar.jpg"} alt="" />
+              <span>{data.userName}</span>
+            </div>
+          )}
           <p>{item.desc}</p>
           <div className="rate-star">
             <StarIcon />
-            <span>{item.star}</span>
+            <span>
+              {!isNaN(item.totalStars / item.starNumber) &&
+                Math.round(item.totalStars / item.starNumber)}
+            </span>
           </div>
         </div>
         <hr />

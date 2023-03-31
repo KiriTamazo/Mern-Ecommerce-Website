@@ -30,16 +30,13 @@ export const register = async (req, res, next) => {
 };
 export const login = async (req, res, next) => {
   try {
-    const user = await UserModel.findOne({ userName: req.body.userName });
-
-    if (!user) {
-      return next(createError(404, "User not found"));
-    }
-
+    const user = await UserModel.findOne({ email: req.body.email });
+    if (!user) return next(createError(404, "User not found"));
+    console.log(user.id);
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
-    const { password, ...info } = user.toObject();
-
+    const { password, _id, ...info } = user.toObject();
+    console.log(user, "info");
     const token = jwt.sign(
       { id: user.id, isSeller: user.isSeller },
       process.env.JWT_KEY
@@ -53,9 +50,11 @@ export const login = async (req, res, next) => {
       res
         .cookie("accessToken", token, {
           httpOnly: true,
+          // sameSite: "none",
         })
         .status(200)
-        .send(info);
+        .json({ id: _id, ...info });
+      // .send(info);
     }
   } catch (err) {
     next(err);
@@ -63,10 +62,7 @@ export const login = async (req, res, next) => {
 };
 export const logout = async (req, res) => {
   try {
-    res
-      .clearCookie("accessToken", { sameSite: "none", security: true })
-      .status(200)
-      .send("User has been logged out");
+    res.clearCookie("accessToken").status(200).send("User has been logged out");
   } catch (err) {
     next(err);
   }

@@ -1,0 +1,27 @@
+.errorPage {
+  .container {
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 30px;
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    a {
+      font-size: 0.7rem;
+      color: #7b7cff;
+    }
+  }
+}
+@media (min-width: 540px) {
+  .errorPage {
+    .container {
+      align-items: center;
+    }
+  }
+}

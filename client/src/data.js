@@ -211,8 +211,8 @@ export const footerLinks = [
       "Help & Support",
       "Trust & Safety",
       "Partnerships",
-      "Selling on Fiverr",
-      "Buying on Fiverr",
+      "Selling on Allure",
+      "Buying on Allure",
     ],
   },
   {

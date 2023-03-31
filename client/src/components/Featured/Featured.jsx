@@ -1,6 +1,13 @@
-import React from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Featured.scss";
 const Featured = () => {
+  const inputRef = useRef();
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate(`gigs?search=${inputRef.current.value}`);
+  };
   return (
     <section className="featured">
       <div className="container">
@@ -10,10 +17,15 @@ const Featured = () => {
           </h1>
           <div className="search">
             <div className="searchInput">
-              <img src="./img/search.png" alt="" />
-              <input type="text" placeholder="Try building mobile app" />
+              {/* <img src="./img/search.png" alt="" /> */}
+              <MagnifyingGlassIcon className="search-icon" />
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Try building mobile app"
+              />
             </div>
-            <button>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
           <div className="popular">
             <span>Popular:</span>

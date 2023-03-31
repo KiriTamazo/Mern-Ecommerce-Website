@@ -1,5 +1,5 @@
 import createError from "../ulti/createError.js";
-
+import jwt from "jsonwebtoken";
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.accessToken;
   //   check if user already logged in

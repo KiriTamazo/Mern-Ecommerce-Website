@@ -59,16 +59,10 @@ const Sidebar = ({
           <p>General</p>
           <hr />
           <Link className="link" to="/">
-            Allure Bussiness
-          </Link>
-          <Link className="link" to="/">
-            Explore
-          </Link>
-          <Link className="link" to="/">
-            English
+            Gigs
           </Link>
         </ul>
-        <Switch />
+        <Switch label={true} />
       </aside>
     </div>
   );

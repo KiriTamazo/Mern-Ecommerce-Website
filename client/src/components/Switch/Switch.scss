@@ -1,10 +1,21 @@
 .toggleWrapper {
   overflow: hidden;
-
+  gap: 20px;
+  align-items: center;
   input {
     position: absolute;
     left: -99em;
     display: none;
+  }
+  &[aria-label="true"] {
+    &::after {
+      content: "Dark";
+      font-size: 0.7rem;
+    }
+    &::before {
+      content: "Light";
+      font-size: 0.7rem;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Switch.scss";
-const Switch = () => {
+const Switch = ({ label }) => {
   const dark = localStorage.theme === "dark" ? true : false;
   const [check, setCheck] = useState(dark || false);
   const handleChecked = () => {
@@ -15,10 +15,10 @@ const Switch = () => {
       localStorage.setItem("theme", "light");
     }
   }, [check]);
-  console.log(check, "check");
+  console.log(!!label, "label");
   return (
     <>
-      <div className="toggleWrapper">
+      <div className="toggleWrapper" aria-label={!!label}>
         <input
           type="checkbox"
           className="dn"

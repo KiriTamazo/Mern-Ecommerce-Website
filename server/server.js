@@ -8,11 +8,13 @@ import reviewRoute from "./routes/review.route.js";
 import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
-
+import cors from "cors";
 // Config
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 // Mongoose
@@ -34,9 +36,9 @@ const connect = async () => {
 
 // Routes
 app.use("/api/users", userRoute);
-app.use("/api/gig", gigRoute);
+app.use("/api/gigs", gigRoute);
 app.use("/api/order", orderRoute);
-app.use("/api/review", reviewRoute);
+app.use("/api/reviews", reviewRoute);
 app.use("/api/auth", authRoute);
 app.use(errorMiddleware);
 

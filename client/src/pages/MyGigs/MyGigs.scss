@@ -1,0 +1,90 @@
+.my-gigs {
+  display: flex;
+  justify-content: center;
+  .container {
+    padding-top: 120px;
+    padding-bottom: 50px;
+    min-height: 90vh;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      h1 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+      .add-gig {
+        background-color: var(--btn-bg-color);
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: var(--btn-color);
+        transform: all 0.5s ease;
+        &:hover {
+          background-color: var(--btn-hover-bg);
+        }
+      }
+    }
+    .table-container {
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 3px;
+      }
+      table {
+        width: 100%;
+        min-width: 990px;
+        margin-top: 40px;
+        border-collapse: collapse;
+
+        [aria-expanded="true"] {
+          min-width: 150px;
+        }
+        [aria-expanded="false"] {
+          width: 150px;
+        }
+        tr {
+          height: 50px;
+          text-align: center;
+          th {
+            background-color: var(--primary);
+            color: var(--btn-color);
+            font-weight: 500;
+            font-size: 1.1rem;
+          }
+          td {
+            border-collapse: separate;
+            padding: 10px;
+            sup {
+              font-size: 12px;
+            }
+            &.td-title {
+              flex: 2;
+              text-align: left;
+            }
+            .image {
+              width: 70px;
+              height: 70px;
+              border-radius: 5px;
+              margin: 0 auto;
+              object-fit: cover;
+            }
+
+            .message {
+              width: 25px;
+              cursor: pointer;
+            }
+            .delete-icon {
+              width: 25px;
+              height: 25px;
+              color: var(--error-text);
+            }
+          }
+          &:nth-child(even) {
+            background-color: var(--table-bg-color);
+          }
+        }
+      }
+    }
+  }
+}

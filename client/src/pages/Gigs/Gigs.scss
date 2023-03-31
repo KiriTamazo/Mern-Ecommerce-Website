@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   .container {
-    padding-top: 30px;
+    padding-top: 120px;
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -12,8 +12,7 @@
       font-size: 0.65rem;
       color: var(--gig-color);
     }
-    h1 {
-    }
+
     p {
       color: var(--gig-color);
       font-weight: 300;
@@ -52,7 +51,7 @@
             color: var(--text-color);
             background-color: var(--input-gray-bg);
             &::placeholder {
-              color: var(--input-color);
+              color: #4f4e5fbf;
             }
           }
           button {
@@ -96,7 +95,7 @@
         .rightMenu {
           min-width: 120px;
           position: absolute;
-          background-color: var(--modal-bg-color);
+          background-color: var(--input-gray-bg);
           color: var(--modal-color);
           border-radius: 5px;
           padding: 10px;
@@ -106,7 +105,6 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
-          box-shadow: 0 1px 4px var(--modal-shadow);
           visibility: visible;
           opacity: 1;
           transition: all 0.5s ease;

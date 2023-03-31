@@ -2,12 +2,11 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import "./Business.scss";
 const Business = () => {
   return (
-    <section className="business">
+    <section id="business" className="business">
       <div className="container">
         <div className="item">
           <h2>
-            Allure {" "} 
-            <span className="thin"> Business.</span>
+            Allure <span className="thin"> Business.</span>
             <span className="badge">new</span>
           </h2>
           <h1>
