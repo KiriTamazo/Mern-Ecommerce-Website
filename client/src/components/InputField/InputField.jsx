@@ -84,6 +84,7 @@ const InputField = ({
             type={type}
             {...register(name, { required: true })}
             multiple={multiple}
+            accept="image/png,image/jpeg,image/jpg"
           />
         );
       case "checkbox":

@@ -97,64 +97,67 @@ const Gig = () => {
   console.log(data, "datauser");
   return (
     <section className="gig">
-      {isLoading ? (
-        "Loading"
-      ) : error ? (
-        "Something went wrong!"
-      ) : (
-        <div className="container gigContainer">
-          <div className="left">
-            {/* <span className="breadcrumbs">Allure > Graphic & Design</span> */}
-            <h1>{data?.title}</h1>
-            <div className="user">
-              <img
-                src={dataUser?.img || "./img/noavatar.jpg"}
-                className="pp"
-                alt=""
-              />
-              <span>{dataUser?.userName}</span>
-              <Stars data={data} />
-            </div>
-            <Slide style="gigSlide" slidesToShow={1} arrowsScroll={1}>
-              {data?.imgs?.map((item, i) => {
-                return <img key={`${item}${i}`} src={item} alt="" />;
-              })}
-            </Slide>
-            <h2>{data?.shortTitle}</h2>
-            <p>{data?.desc}</p>
-            <User user={dataUser} />
-            <Reviews user={dataUser} gigId={id} />
-          </div>
-          {/* RightSidebar */}
-          <div className="right">
-            <div className="price">
-              <h3>{data?.shortTitle}</h3>
-              <h2>$ {data?.price}</h2>
-            </div>
-            <p>{data?.shortDesc}</p>
-            <div className="details">
-              <div className="item">
-                <ClockIcon />
-                <span>{data?.deliveryTime} Days Delivery</span>
+      <div className="container gigContainer">
+        {isLoading ? (
+          "Loading"
+        ) : error ? (
+          "Something went wrong!"
+        ) : (
+          <>
+            <div className="left">
+              {/* <span className="breadcrumbs">Allure > Graphic & Design</span> */}
+              <h1>{data?.title}</h1>
+              <div className="user">
+                <img
+                  src={dataUser?.img || "./img/noavatar.jpg"}
+                  className="pp"
+                  alt=""
+                />
+                <span>{dataUser?.userName}</span>
+                <Stars data={data} />
               </div>
-              <div className="item">
-                <ArrowPathIcon />
-                <span>{data?.revisionNumber} Revisions</span>
-              </div>
+              <Slide style="gigSlide" slidesToShow={1} arrowsScroll={1}>
+                {data?.imgs?.map((item, i) => {
+                  console.log(item, "item");
+                  return <img key={`${item}${i}`} src={item.url} alt="" />;
+                })}
+              </Slide>
+              <h2>{data?.shortTitle}</h2>
+              <p>{data?.desc}</p>
+              <User user={dataUser} />
+              <Reviews user={dataUser} gigId={id} />
             </div>
-            <div className="gigfeatures">
-              {data?.features?.map((item) => (
-                <div className="item" key={item}>
-                  <img src="/img/greencheck.png" alt="" />
-                  <span>{item}</span>
+            {/* RightSidebar */}
+            <div className="right">
+              <div className="price">
+                <h3>{data?.shortTitle}</h3>
+                <h2>$ {data?.price}</h2>
+              </div>
+              <p>{data?.shortDesc}</p>
+              <div className="details">
+                <div className="item">
+                  <ClockIcon />
+                  <span>{data?.deliveryTime} Days Delivery</span>
                 </div>
-              ))}
-              {data?.features.length < 1 && <p>No Feature to show</p>}
+                <div className="item">
+                  <ArrowPathIcon />
+                  <span>{data?.revisionNumber} Revisions</span>
+                </div>
+              </div>
+              <div className="gigfeatures">
+                {data?.features?.map((item) => (
+                  <div className="item" key={item}>
+                    <img src="/img/greencheck.png" alt="" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+                {data?.features.length < 1 && <p>No Feature to show</p>}
+              </div>
+              <button>Continue</button>
             </div>
-            <button>Continue</button>
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </section>
   );
 };

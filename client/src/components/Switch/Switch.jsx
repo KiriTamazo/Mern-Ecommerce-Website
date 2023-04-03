@@ -15,7 +15,7 @@ const Switch = ({ label }) => {
       localStorage.setItem("theme", "light");
     }
   }, [check]);
-  console.log(!!label, "label");
+
   return (
     <>
       <div className="toggleWrapper" aria-label={!!label}>

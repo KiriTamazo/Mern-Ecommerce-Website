@@ -58,6 +58,9 @@
       gap: 24px;
       align-items: center;
       font-weight: 500;
+      &.navActive {
+        color: var(--primary);
+      }
       .link {
         display: none;
       }
@@ -126,17 +129,28 @@
   hr {
     width: 100%;
     height: 0;
-    border: 0.5px solid #868591;
-    display: none;
+    border: 0.5px solid var(--divider);
   }
   .menu {
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     font-weight: 300;
-    display: none;
     width: 100%;
-    display: none;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    & .container {
+      padding-top: 0;
+      padding-bottom: 0;
+      gap: 10px;
+      .menu-links {
+        white-space: nowrap;
+        font-size: 0.7rem;
+      }
+    }
   }
 }
 @media (min-width: 540px) {

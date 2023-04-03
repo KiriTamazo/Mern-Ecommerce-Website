@@ -8,8 +8,8 @@ html[data-theme="light"] {
   --light-text-color: #{$dark-200};
   --gray-bg: #{$light-text};
   --light-bg: #e5dfdf40;
-  --foreground: #{$light};
-
+  --foreground: #fafafa;
+  --section-bg: #f8f8ffdb;
   --bg-color: #{$text};
   --btn-color: #{$text};
   --btn-bg-color: #{$primary-500};
@@ -48,6 +48,7 @@ html[data-theme="dark"] {
   --light-bg: #1e1e3175;
 
   --foreground: #{$dark-400};
+  --section-bg: #{$dark-500};
 
   --bg-color: #{$dark-500};
   --btn-color: #{$dark-300};

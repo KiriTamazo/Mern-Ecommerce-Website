@@ -1,5 +1,9 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-import { StarIcon as StarOutLineIcon } from "@heroicons/react/24/outline";
+import {
+  HandThumbDownIcon,
+  HandThumbUpIcon,
+  StarIcon as StarOutLineIcon,
+} from "@heroicons/react/24/outline";
 
 import { useQuery } from "@tanstack/react-query";
 import apiRequest from "../../ultis/apiRequest";
@@ -42,9 +46,9 @@ const Review = ({ review }) => {
         <p>{review.desc}</p>
         <div className="helpful">
           <span>Helpful?</span>
-          <img src="/img/like.png" alt="" />
+          <HandThumbUpIcon />
           <span>Yes</span>
-          <img src="/img/dislike.png" alt="" />
+          <HandThumbDownIcon />
           <span>No</span>
         </div>
       </div>

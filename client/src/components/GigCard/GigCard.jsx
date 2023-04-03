@@ -4,18 +4,17 @@ import { HeartIcon, StarIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import apiRequest from "../../ultis/apiRequest";
 const GigCard = ({ item }) => {
-  const { isLoading, error, data, refetch } = useQuery({
+  const { isLoading, error, data } = useQuery({
     queryKey: ["gigUser"],
     queryFn: () =>
       apiRequest.get(`/users/${item.userId}`).then((res) => {
         return res.data;
       }),
   });
-  console.log("item", data);
   return (
     <Link to={`/gig/${item.id}`}>
       <div className="gigCard">
-        <img src={item.image} alt="" />
+        <img src={item?.image?.url} alt="" />
         <div className="info">
           {isLoading ? (
             "Loading"

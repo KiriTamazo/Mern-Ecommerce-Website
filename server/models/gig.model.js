@@ -32,11 +32,22 @@ const gigSchema = new Schema(
       required: true,
     },
     image: {
-      type: String,
-      required: true,
+      public_id: { type: String, required: true },
+      url: {
+        type: String,
+        required: true,
+      },
     },
     imgs: {
-      type: [String],
+      type: [
+        {
+          public_id: { type: String, required: true },
+          url: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
       required: false,
     },
     shortTitle: {

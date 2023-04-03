@@ -23,7 +23,20 @@ export const register = async (req, res, next) => {
     });
 
     await newUser.save();
-    res.status(200).send(newUser);
+    const { password, _id, ...info } = newUser.toObject();
+    // after create, func to work like login in method
+    const token = jwt.sign(
+      { id: newUser.id, isSeller: newUser.isSeller },
+      process.env.JWT_KEY
+    );
+
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        // sameSite: "none",
+      })
+      .status(200)
+      .send(info);
   } catch (err) {
     next(err);
   }
@@ -32,11 +45,9 @@ export const login = async (req, res, next) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "User not found"));
-    console.log(user.id);
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
 
     const { password, _id, ...info } = user.toObject();
-    console.log(user, "info");
     const token = jwt.sign(
       { id: user.id, isSeller: user.isSeller },
       process.env.JWT_KEY

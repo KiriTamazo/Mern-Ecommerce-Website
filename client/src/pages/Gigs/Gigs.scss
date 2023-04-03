@@ -1,6 +1,7 @@
 .gigs {
   display: flex;
   justify-content: center;
+  background-color: var(--section-bg);
   .container {
     padding-top: 120px;
     padding-bottom: 30px;
@@ -50,6 +51,9 @@
             border: none;
             color: var(--text-color);
             background-color: var(--input-gray-bg);
+            &::-webkit-inner-spin-button {
+              appearance: none;
+            }
             &::placeholder {
               color: #4f4e5fbf;
             }

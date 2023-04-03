@@ -1,49 +1,56 @@
+.pop-wrapper {
+  position: relative;
+}
 .helper-popup {
-  position: fixed;
-  bottom: 20px;
+  position: absolute;
+  max-width: 250px;
+  bottom: 75px;
   right: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: var(--modal-bg-color);
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  //   opacity: 0;
-  transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(30px);
   transition: all 0.3s ease-in-out;
- 
-  .helper-popup.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
-  .helper-popup .message {
-    margin-bottom: 10px;
-  }
-
-  .helper-popup .close-btn {
+  &::after {
+    content: "";
     position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ccc;
-    transition: all 0.3s ease-in-out;
+    top: 99%;
+    right: 5%;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--modal-bg-color) transparent transparent transparent;
   }
 
-  .helper-popup .close-btn:hover {
-    color: #333;
+  &.show {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+
+  & .message {
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 0.6rem;
+
+    p {
+      margin: 5px 0;
+    }
+    hr {
+      background-color: var(--border-color);
+      margin: 10px 0;
+    }
   }
 }
 .helper-icon {
   width: 50px;
   border-radius: 50%;
-  background-color: var(--foreground);
+  
   color: var(--text-color);
   cursor: pointer;
-  position: fixed;
-  bottom: 2%;
-  right: 2%;
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }

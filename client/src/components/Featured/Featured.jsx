@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Featured.scss";
 const Featured = () => {
@@ -17,7 +17,6 @@ const Featured = () => {
           </h1>
           <div className="search">
             <div className="searchInput">
-              {/* <img src="./img/search.png" alt="" /> */}
               <MagnifyingGlassIcon className="search-icon" />
               <input
                 ref={inputRef}

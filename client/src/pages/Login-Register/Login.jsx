@@ -6,6 +6,7 @@ import InputField from "../../components/InputField/InputField";
 import "./Login-Register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../ultis/apiRequest";
+import HelperPopup from "../../components/Popup/Popup";
 const loginSchema = yup
   .object()
   .shape({
@@ -26,6 +27,10 @@ const Login = () => {
     formState: { isSubmitSuccessful, errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
+    defaultValues: {
+      email: "testseller@gmail.com",
+      password: "testseller",
+    },
   });
   const [message, setMessage] = useState(null);
   const messageRef = useRef(null);
@@ -45,7 +50,7 @@ const Login = () => {
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       navigate("/");
     } catch (error) {
-      setMessage(error.response.data);
+      setMessage(error?.response?.data);
       messageRef.current = setTimeout(() => {
         setMessage(null);
       }, 5000);
@@ -64,40 +69,43 @@ const Login = () => {
   }, []);
 
   return (
-    <section className="login">
-      <div className="container">
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <h1>Sign In</h1>
-          {message && (
-            <p ref={messageRef} className="errMessage">
-              {message}
-            </p>
-          )}
-          <InputField
-            label="Email"
-            type="text"
-            name="email"
-            placeholder="Enter your email"
-            register={register}
-            errors={errors?.email}
-          />
+    <>
+      <section className="login">
+        <div className="container">
+          <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <h1>Sign In</h1>
+            {message && (
+              <p ref={messageRef} className="errMessage">
+                {message}
+              </p>
+            )}
+            <InputField
+              label="Email"
+              type="text"
+              name="email"
+              placeholder="Enter your email"
+              register={register}
+              errors={errors?.email}
+            />
 
-          <InputField
-            label="Password"
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            register={register}
-            errors={errors?.password}
-          />
+            <InputField
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              register={register}
+              errors={errors?.password}
+            />
 
-          <button type="submit">Login</button>
-          <Link to="/register" className="login-register-link">
-            Don't have a account yet?
-          </Link>
-        </form>
-      </div>
-    </section>
+            <button type="submit">Login</button>
+            <Link to="/register" className="login-register-link">
+              Don't have an account yet? Sign up
+            </Link>
+          </form>
+          <HelperPopup />
+        </div>
+      </section>
+    </>
   );
 };
 

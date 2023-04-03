@@ -76,21 +76,6 @@ const Navbar = () => {
           </div>
           {/* Nav Links */}
           <ul className="links">
-            {/* <a className="link" href="#business">
-              Bussiness
-            </a>
-            <Link className="link" to="/">
-              Explore
-            </Link> */}
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "links active" : "links"
-              }
-              to="/gigs"
-            >
-              Gigs
-            </NavLink>
-
             {!currentUser && (
               <Link className="link" to="/login">
                 Sign In
@@ -114,6 +99,14 @@ const Navbar = () => {
                   )}
                   {/* <Link to="/orders">Orders</Link>
                   <Link to="/messages">Messages</Link> */}
+                  <Link
+                    className={({ isActive }) =>
+                      isActive ? "links navActive" : "links"
+                    }
+                    to="/gigs"
+                  >
+                    Gigs
+                  </Link>
                   <Link className="logout" onClick={handleLogOut}>
                     Logout
                   </Link>
@@ -127,13 +120,27 @@ const Navbar = () => {
         {(active || pathname !== "/") && (
           <ul className="menu">
             <div className="container">
-              <Link to="/">Graphic & Design</Link>
-              <Link to="/">Video & Animation</Link>
-              <Link to="/">Writing & Translation</Link>
-              <Link to="/">AI Services</Link>
-              <Link to="/">Digital Marketing</Link>
-              <Link to="/">Music & Audio</Link>
-              <Link to="/">Programming & Tech</Link>
+              <Link className="menu-links" to="/">
+                Graphic & Design
+              </Link>
+              <Link className="menu-links" to="/">
+                Video & Animation
+              </Link>
+              <Link className="menu-links" to="/">
+                Writing & Translation
+              </Link>
+              <Link className="menu-links" to="/">
+                AI Services
+              </Link>
+              <Link className="menu-links" to="/">
+                Digital Marketing
+              </Link>
+              <Link className="menu-links" to="/">
+                Music & Audio
+              </Link>
+              <Link className="menu-links" to="/">
+                Programming & Tech
+              </Link>
             </div>
           </ul>
         )} */}

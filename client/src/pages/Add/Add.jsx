@@ -1,5 +1,5 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import InputField from "../../components/InputField/InputField";
 import * as yup from "yup";
 import "./Add.scss";
@@ -7,7 +7,7 @@ import apiRequest from "../../ultis/apiRequest";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-
+import { useNavigate } from "react-router-dom";
 const addSchema = yup
   .object()
   .shape({
@@ -41,16 +41,18 @@ const addSchema = yup
   .required();
 
 const Add = () => {
-  const [message, setMessage] = useState(null);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { isSubmitSuccessful, errors },
+    getValues,
+    formState: { isSubmitSuccessful, isSubmitting, errors },
   } = useForm({
     resolver: yupResolver(addSchema),
   });
-
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
+  console.log(isSubmitting, "submitting");
   // Cloudinary Image||Images Upload Function
   const uploadImages = async (files) => {
     if (!Array.isArray(files)) {
@@ -65,7 +67,8 @@ const Add = () => {
         .post("https://api.cloudinary.com/v1_1/tamazo/image/upload", formData)
         .then((response) => {
           const data = response.data;
-          const fileURL = data.secure_url;
+          console.log(data, "cloudinarydata");
+          const fileURL = { url: data.secure_url, public_id: data.public_id };
 
           return fileURL;
         })
@@ -80,11 +83,6 @@ const Add = () => {
       return urls;
     }
   };
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
 
   const onSubmit = async (data) => {
     const features = (data.features || "")
@@ -103,16 +101,24 @@ const Add = () => {
       })
       .then(() => {
         setMessage("Successfully");
+        navigate("/myGigs");
       })
       .catch((err) => {
         console.log(err, "errServer");
         setMessage(err?.message);
       });
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+  console.log(getValues(), "success");
   const handleMessageClose = () => {
     setMessage(null);
   };
-  console.log(errors);
+
   return (
     <section className="add">
       <div className="container">
@@ -232,7 +238,7 @@ const Add = () => {
           </div>
         </div>
         <button type="submit" onClick={handleSubmit(onSubmit)}>
-          Create
+          {isSubmitting ? "Loading..." : "Create"}
         </button>
       </div>
     </section>

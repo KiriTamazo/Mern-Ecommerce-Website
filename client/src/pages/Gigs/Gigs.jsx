@@ -59,8 +59,8 @@ const Gigs = () => {
           <div className="left">
             <span>Budget</span>
             <div className="inputField">
-              <input ref={minRef} type="number" placeholder="min" />
-              <input ref={maxRef} type="number" placeholder="max" />
+              <input ref={minRef} type="number" placeholder="min" min={1} />
+              <input ref={maxRef} type="number" placeholder="max" max={1} />
               <button onClick={handleApply}>Apply</button>
             </div>
           </div>
@@ -86,11 +86,15 @@ const Gigs = () => {
 
         {/* Card */}
         <div className="cards">
-          {isLoading
-            ? "Loading"
-            : error
-            ? "Something went wrong!"
-            : data?.map((item) => <GigCard key={item.id} item={item} />)}
+          {isLoading ? (
+            "Loading"
+          ) : error ? (
+            "Something went wrong!"
+          ) : data?.length < 1 ? (
+            <p> No Gig To Show</p>
+          ) : (
+            data?.map((item) => <GigCard key={item.id} item={item} />)
+          )}
         </div>
         {/* Card */}
       </div>

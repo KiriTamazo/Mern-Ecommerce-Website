@@ -55,7 +55,7 @@ const Register = () => {
   const upload = async (file) => {
     const data = new FormData();
     data.append("file", file);
-    data.append("upload_preset", "allure");
+    data.append("upload_preset", "allure_users");
     try {
       const res = await axios.post(
         "https://api.cloudinary.com/v1_1/tamazo/image/upload",
@@ -71,10 +71,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     const url = await upload(data.img[0]);
     try {
-      await apiRequest.post("auth/register", {
+      const result = await apiRequest.post("auth/register", {
         ...data,
         img: url,
       });
+      localStorage.setItem("currentUser", JSON.stringify(result.data));
       navigate("/");
     } catch (error) {
       setMessage(error.response?.data);

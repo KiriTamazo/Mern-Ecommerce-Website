@@ -22,7 +22,6 @@ const MyGigs = () => {
     setShow(false);
     unlockScroll();
   };
-
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
     queryFn: () =>
@@ -47,6 +46,7 @@ const MyGigs = () => {
     },
   });
 
+  console.log(data, "userdata");
   return (
     <section className="my-gigs">
       <div className="container">
@@ -74,29 +74,38 @@ const MyGigs = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.map((gigs, i) => (
-                    <tr key={gigs.id}>
-                      <td>
-                        <img className="image" src={gigs.image} alt="" />
-                      </td>
-                      <td aria-expanded className="td-title">
-                        {gigs.title}
-                      </td>
-                      <td>{gigs.price}</td>
-                      <td>{gigs.sales}</td>
-                      <td aria-expanded="false">
-                        <button
-                          onClick={() => {
-                            handleShow();
-                            setDataId(gigs.id);
-                          }}
-                          className="delete-btn"
-                        >
-                          <TrashIcon className="delete-icon" />
-                        </button>
+                  {data?.length < 1 && (
+                    <tr>
+                      <td colSpan={5} className="placeholder-row">
+                        No Data To Show
                       </td>
                     </tr>
-                  ))}
+                  )}
+                  {data?.map((gigs) => {
+                    return (
+                      <tr key={gigs.id}>
+                        <td>
+                          <img className="image" src={gigs.image.url} alt="" />
+                        </td>
+                        <td aria-expanded className="td-title">
+                          {gigs.title}
+                        </td>
+                        <td>{gigs.price}</td>
+                        <td>{gigs.sales}</td>
+                        <td aria-expanded="false">
+                          <button
+                            onClick={() => {
+                              handleShow();
+                              setDataId(gigs.id);
+                            }}
+                            className="delete-btn"
+                          >
+                            <TrashIcon className="delete-icon" />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
