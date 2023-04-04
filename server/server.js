@@ -12,8 +12,11 @@ import cors from "cors";
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
-
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://allure-api-kpi8.onrender.com",
+];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 // Mongoose
