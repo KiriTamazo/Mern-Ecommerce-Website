@@ -150,10 +150,10 @@ const Add = () => {
               errors={errors?.category}
               type="select"
               options={[
-                { value: "design", title: "Designer" },
+                { value: "design", title: "Web Designer" },
                 { value: "animation", title: "Animation" },
-                { value: "music", title: "Music" },
-                { value: "web", title: "Web Designer" },
+                { value: "ai", title: "AI" },
+                { value: "developer", title: "Web Developer" },
               ]}
             />
             <InputField

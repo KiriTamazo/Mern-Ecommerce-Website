@@ -4,24 +4,28 @@ export const cards = [
     title: "AI Artists",
     desc: "Add talent to AI",
     img: "/img/ai-generated.jpg",
+    to: "/gigs?category=ai",
   },
   {
     id: 2,
     title: "Logo Design",
     desc: "Build yor brand",
     img: "/img/designer.jpg",
+    to: "/gigs?category=design",
   },
   {
     id: 3,
     title: "WordPress",
     desc: "Customize your site",
     img: "/img/developer.jpg",
+    to: "/gigs?category=developer",
   },
   {
     id: 4,
     title: "Voice Over",
     desc: "Share your message",
     img: "/img/voice-over.jpg",
+    to: "/gigs?category=animation",
   },
 
   {
@@ -29,12 +33,14 @@ export const cards = [
     title: "Social Media",
     desc: "Reach more customers",
     img: "/img/social.jpg",
+    to: "/gigs?category=design",
   },
   {
     id: 6,
     title: "SEO",
     desc: "Unlock growth online",
     img: "/img/seo.jpg",
+    to: "/gigs?category=developer",
   },
 ];
 
