@@ -7,7 +7,7 @@ import LoadingSpinner from "../../components/Loading/Loading";
 const ProtectedRoutes = () => {
   const isAuthenticated = useAuth();
   const [isLoading, setIsLoading] = useState(true);
-  console.log(isAuthenticated);
+  
   useEffect(() => {
     setIsLoading(false);
   }, [isAuthenticated]);

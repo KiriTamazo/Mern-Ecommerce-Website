@@ -28,7 +28,7 @@ const reviewSchema = new Schema(
 reviewSchema.method("toJSON", function () {
   const { __v, _id, ...object } = this.toObject();
   object.id = _id;
-  console.log("object", object);
+  
   return object;
 });
 export default mongoose.model("Review", reviewSchema);

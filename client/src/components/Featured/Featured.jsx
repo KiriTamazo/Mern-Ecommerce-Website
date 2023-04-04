@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Featured.scss";
 const Featured = () => {
   const inputRef = useRef();
@@ -28,10 +28,18 @@ const Featured = () => {
           </div>
           <div className="popular">
             <span>Popular:</span>
-            <button>Web Design</button>
-            <button>Word Press</button>
-            <button>Logo Design</button>
-            <button>AI Services</button>
+            <Link to="/gigs?category=design" className="btn">
+              Web Design
+            </Link>
+            <Link to="/gigs?category=developer" className="btn">
+              Word Press
+            </Link>
+            <Link to="/gigs?category=animation" className="btn">
+              Logo Design
+            </Link>
+            <Link to="/gigs?category=ai" className="btn">
+              AI Services
+            </Link>
           </div>
         </div>
         <div className="right">

@@ -52,7 +52,7 @@ const Add = () => {
   });
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  console.log(isSubmitting, "submitting");
+
   // Cloudinary Image||Images Upload Function
   const uploadImages = async (files) => {
     if (!Array.isArray(files)) {
@@ -67,13 +67,13 @@ const Add = () => {
         .post("https://api.cloudinary.com/v1_1/tamazo/image/upload", formData)
         .then((response) => {
           const data = response.data;
-          console.log(data, "cloudinarydata");
+
           const fileURL = { url: data.secure_url, public_id: data.public_id };
 
           return fileURL;
         })
         .catch((error) => {
-          console.log(error, "errorCloud");
+          console.log(error);
         });
     });
     const urls = await axios.all(uploaders);
@@ -104,7 +104,6 @@ const Add = () => {
         navigate("/myGigs");
       })
       .catch((err) => {
-        console.log(err, "errServer");
         setMessage(err?.message);
       });
   };
@@ -114,7 +113,7 @@ const Add = () => {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
-  console.log(getValues(), "success");
+
   const handleMessageClose = () => {
     setMessage(null);
   };

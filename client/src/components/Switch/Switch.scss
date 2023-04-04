@@ -1,6 +1,6 @@
 .toggleWrapper {
   overflow: hidden;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
   input {
     position: absolute;
@@ -9,12 +9,12 @@
   }
   &[aria-label="true"] {
     &::after {
-      content: "Dark";
-      font-size: 0.7rem;
+      content: "Night";
+      font-size: 0.8rem;
     }
     &::before {
-      content: "Light";
-      font-size: 0.7rem;
+      content: "Day";
+      font-size: 0.8rem;
     }
   }
 }
@@ -193,8 +193,11 @@ input:checked {
     }
   }
 }
-.navbar {
-  .container .links .toggleWrapper {
+.navbar .container .links {
+  & .user .options .toggleWrapper {
+    display: flex;
+  }
+  & .toggleWrapper {
     display: none;
   }
 }
@@ -233,8 +236,13 @@ input:checked {
 }
 @media (min-width: 768px) {
   .navbar {
-    .container .links .toggleWrapper {
-      display: block;
+    .container .links {
+      .user .options .toggleWrapper {
+        display: none;
+      }
+      & .toggleWrapper {
+        display: flex;
+      }
     }
   }
 }

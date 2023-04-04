@@ -17,7 +17,7 @@ const Gigs = () => {
   };
   const { search } = useLocation();
 
-  const { isLoading, error, data, refetch } = useQuery({
+  const { isLoading, isFetching, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
     queryFn: () =>
       apiRequest
@@ -30,9 +30,9 @@ const Gigs = () => {
           return res.data;
         }),
   });
-  console.log(search, "search");
+  
 
-  console.log(data);
+  
   // to filter
   const handleApply = () => {
     refetch();
@@ -86,7 +86,7 @@ const Gigs = () => {
 
         {/* Card */}
         <div className="cards">
-          {isLoading ? (
+          {isLoading || isFetching ? (
             "Loading"
           ) : error ? (
             "Something went wrong!"

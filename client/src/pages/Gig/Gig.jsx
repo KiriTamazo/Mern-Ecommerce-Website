@@ -14,7 +14,7 @@ const User = ({ user }) => {
   //       return res.data;
   //     }),
   // });
-  // console.log(data, "user");
+  // 
   return (
     <>
       {/* Seller */}
@@ -94,7 +94,7 @@ const Gig = () => {
       }),
     enabled: !!userId,
   });
-  console.log(data, "datauser");
+  
   return (
     <section className="gig">
       <div className="container gigContainer">
@@ -118,7 +118,7 @@ const Gig = () => {
               </div>
               <Slide style="gigSlide" slidesToShow={1} arrowsScroll={1}>
                 {data?.imgs?.map((item, i) => {
-                  console.log(item, "item");
+                  
                   return <img key={`${item}${i}`} src={item.url} alt="" />;
                 })}
               </Slide>

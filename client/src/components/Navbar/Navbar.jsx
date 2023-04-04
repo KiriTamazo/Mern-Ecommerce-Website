@@ -1,34 +1,34 @@
 import "./Navbar.scss";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
-import Sidebar from "../Sidebar/Sidebar";
 import Switch from "../Switch/Switch";
 import useClickOutSide from "../../hooks/useClickOutSide";
-import useScrollLock from "../../hooks/useScrollLock";
 import apiRequest from "../../ultis/apiRequest";
+// import Sidebar from "../Sidebar/Sidebar";
+// import { Bars3Icon } from "@heroicons/react/24/outline";
+// import useScrollLock from "../../hooks/useScrollLock";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openSidebar, setOpenSidebar] = useState(false);
   const modalRef = useRef();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   useClickOutSide(modalRef, () => setOpen(false));
-  const { lockScroll, unlockScroll } = useScrollLock();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // const [openSidebar, setOpenSidebar] = useState(false);
+  // const { lockScroll, unlockScroll } = useScrollLock();
 
   // For mobile sidebar
-  const handleOpenSidebar = () => {
-    if (openSidebar) {
-      unlockScroll();
-      setOpenSidebar(false);
-    } else {
-      setOpenSidebar(true);
-      lockScroll();
-    }
-  };
+  // const handleOpenSidebar = () => {
+  //   if (openSidebar) {
+  //     unlockScroll();
+  //     setOpenSidebar(false);
+  //   } else {
+  //     setOpenSidebar(true);
+  //     lockScroll();
+  //   }
+  // };
   // For loggedin user to show pop up modal for more option
   const toggleModal = () => {
     setOpen((prev) => !prev);
@@ -64,9 +64,9 @@ const Navbar = () => {
         }
       >
         <nav className="container">
-          <div className="mobile-menu" onClick={handleOpenSidebar}>
+          {/* <div className="mobile-menu" onClick={handleOpenSidebar}>
             <Bars3Icon />
-          </div>
+          </div> */}
           {/* Logo */}
           <div className="logo">
             <Link to="/">
@@ -99,14 +99,10 @@ const Navbar = () => {
                   )}
                   {/* <Link to="/orders">Orders</Link>
                   <Link to="/messages">Messages</Link> */}
-                  <Link
-                    className={({ isActive }) =>
-                      isActive ? "links navActive" : "links"
-                    }
-                    to="/gigs"
-                  >
+                  <Link className="links" to="/gigs">
                     Gigs
                   </Link>
+                  <Switch label={true} />
                   <Link className="logout" onClick={handleLogOut}>
                     Logout
                   </Link>
@@ -145,12 +141,12 @@ const Navbar = () => {
           </ul>
         )} */}
       </header>
-      <Sidebar
+      {/* <Sidebar
         openSidebar={openSidebar}
         setOpenSidebar={setOpenSidebar}
         handleOpenSidebar={handleOpenSidebar}
         unlockScroll={unlockScroll}
-      />
+      /> */}
     </>
   );
 };

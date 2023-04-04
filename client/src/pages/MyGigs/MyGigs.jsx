@@ -46,7 +46,7 @@ const MyGigs = () => {
     },
   });
 
-  console.log(data, "userdata");
+  
   return (
     <section className="my-gigs">
       <div className="container">

@@ -64,7 +64,7 @@ const Register = () => {
       const { url } = res.data;
       return url;
     } catch (error) {
-      console.log(error);
+      
     }
   };
 

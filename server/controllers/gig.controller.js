@@ -11,9 +11,9 @@ cloudinary.config({
 const deleteImages = async (id) => {
   try {
     const result = await cloudinary.api.delete_resources(id);
-    console.log(result, "delete success");
+    
   } catch (e) {
-    console.log(e, "delete error");
+    console.log(e)
   }
 };
 
@@ -75,7 +75,7 @@ export const getGig = async (req, res, next) => {
   try {
     const gig = await GigModel.findById(req.params.id);
 
-    console.log(process.env.CLOUDINARY_CLOUD_NAME, "env");
+    
     if (!gig) {
       next(createError(404, "Gig Not Found"));
     }

@@ -26,7 +26,6 @@ const connect = async () => {
     });
     app.listen(port, () => {
       console.log("listening on port " + port);
-      console.log("Connected to MongoDB");
     });
   } catch (error) {
     console.log(error);
