@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiRequest = axios.create({
-  baseURL: "https://allure-5atl.onrender.com/api/",
+  baseURL: "https://allure-api-kpi8.onrender.com/api/",
 
   withCredentials: true,
 });

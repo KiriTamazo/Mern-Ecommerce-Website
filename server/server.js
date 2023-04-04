@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://allure-api-kpi8.onrender.com",
+  "https://allure-5atl.onrender.com",
 ];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
