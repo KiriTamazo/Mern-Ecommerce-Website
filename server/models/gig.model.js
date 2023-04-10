@@ -82,7 +82,7 @@ const gigSchema = new Schema(
 gigSchema.method("toJSON", function () {
   const { __v, _id, ...object } = this.toObject();
   object.id = _id;
-  
+
   return object;
 });
 export default mongoose.model("Gig", gigSchema);

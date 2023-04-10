@@ -7,7 +7,6 @@ import InputField from "../../components/InputField/InputField";
 import * as yup from "yup";
 import apiRequest from "../../ultis/apiRequest";
 import { Link, useNavigate } from "react-router-dom";
-import HelperPopup from "../../components/Popup/Popup";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 
 const registerSchema = yup
@@ -179,7 +178,6 @@ const Register = () => {
         </form>
       </div>
 
-      <HelperPopup show={show} message="hello" />
     </section>
   );
 };
