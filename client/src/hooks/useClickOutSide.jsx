@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const useClickOutSide = (ref, handler) => {
   useEffect(() => {
     const listener = (event) => {
-      if (!ref.current || ref.current.contains(event.target)) {
+      if (!ref.current || !ref.current.contains(event.target)) {
         return;
       }
       handler(event);

@@ -1,0 +1,38 @@
+.navbar .container .links {
+  .dark-mode-wrapper {
+    display: none;
+  }
+  .user .options .dark-mode-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.dark-mode-icon {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: #9796963c;
+  }
+}
+.navbar.active {
+  .dark-mode-icon {
+    color: var(--text-color);
+  }
+}
+@media (min-width: 768px) {
+  .navbar .container .links {
+    .dark-mode-wrapper {
+      display: block;
+    }
+    .user .options .dark-mode-wrapper {
+      display: none;
+    }
+  }
+}
