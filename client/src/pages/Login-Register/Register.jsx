@@ -47,9 +47,7 @@ const Register = () => {
       reset();
     }
   }, [isSubmitSuccessful, reset]);
-  const handleClose = () => {
-    setShow(false);
-  };
+
   // File Upload to the cloudinary
   const upload = async (file) => {
     const data = new FormData();
