@@ -70,8 +70,8 @@ const Login = () => {
 
   return (
     <>
-      <section className="login">
-        <div className="container">
+      <section className="login-register-container">
+        <div className="container login">
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <h1>Sign In</h1>
             {message && (

@@ -63,7 +63,7 @@ const Register = () => {
       const { url } = res.data;
       return url;
     } catch (error) {
-      
+      console.log(error);
     }
   };
 
@@ -89,8 +89,8 @@ const Register = () => {
   }, []);
 
   return (
-    <section className="login">
-      <div className="container">
+    <section className="login-register-container">
+      <div className="container register">
         <form action="" onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign Up</h1>
           {message && (
@@ -177,7 +177,6 @@ const Register = () => {
           </Link>
         </form>
       </div>
-
     </section>
   );
 };
