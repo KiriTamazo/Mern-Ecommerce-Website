@@ -27,6 +27,7 @@ const connect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    console.log("connect to mongodb");
     app.listen(port, () => {
       console.log("listening on port " + port);
     });

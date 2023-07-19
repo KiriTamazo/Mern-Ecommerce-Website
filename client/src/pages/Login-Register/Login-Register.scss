@@ -6,6 +6,7 @@
     padding-top: 120px;
     padding-bottom: 60px;
     display: flex;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     position: relative;
@@ -29,12 +30,10 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      min-width: 500px;
+      gap: 10px;
       background-color: var(--bg-color);
       border-radius: 5px;
       padding: 30px 25px;
-      margin: 0 auto;
     }
     .formControl {
       display: flex;
@@ -57,6 +56,12 @@
       label[for="isSeller"] {
         display: none;
       }
+      label {
+        font-size: 0.9rem;
+      }
+      input {
+        padding: 15px;
+      }
     }
     button {
       background-color: var(--btn-bg-color);
@@ -78,9 +83,22 @@
     text-align: center;
     text-transform: capitalize;
     color: var(--primary);
+    margin-top: 0.5rem;
+    span {
+      text-decoration: underline;
+      color: #fff;
+      margin-left: 0.2rem;
+    }
   }
 }
 @media (min-width: 540px) {
+  .login-register-container {
+    .container {
+      form {
+        height: auto;
+      }
+    }
+  }
   .login {
     .container {
       form {

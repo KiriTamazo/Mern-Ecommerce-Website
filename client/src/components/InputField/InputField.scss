@@ -5,7 +5,7 @@
   margin: 10px 0;
   label {
     color: var(--light-text-color);
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
   [aria-required="true"] {
     border: 1px solid var(--error-text) !important;
@@ -31,7 +31,7 @@
       height: 20px;
       position: absolute;
       top: 35%;
-      right: 2%;
+      right: 5%;
       color: var(--light-text-color);
     }
   }

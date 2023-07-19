@@ -1,13 +1,19 @@
-import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
+import { useRef, useState } from "react";
 import "./Popup.scss";
+import useClickOutSide from "../../hooks/useClickOutSide";
 const HelperPopup = ({ message }) => {
   const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+  const popRef = useClickOutSide(handleClose);
   const handleShow = () => {
     setShow(!show);
   };
+
   return (
-    <>
+    <div ref={popRef}>
       <QuestionMarkCircleIcon onClick={handleShow} className="helper-icon" />
       <div className={`helper-popup ${show ? "show" : ""}`}>
         <div className="message">
@@ -22,7 +28,7 @@ const HelperPopup = ({ message }) => {
           <p>testuser</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default HelperPopup;

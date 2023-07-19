@@ -8,10 +8,9 @@ import DarkMode from "../DarkMode/DarkMode";
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const [open, setOpen] = useState(false);
-  const modalRef = useRef();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  useClickOutSide(modalRef, () => setOpen(false));
+  const modalRef = useClickOutSide(() => setOpen(false));
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   // For loggedin user to show pop up modal for more option
@@ -57,7 +56,7 @@ const Navbar = () => {
             <span className="dot">.</span>
           </div>
           {/* Nav Links */}
-          <ul className="links">
+          <ul className="links" ref={modalRef}>
             {!currentUser && (
               <Link className="link" to="/login">
                 Sign In
@@ -72,7 +71,7 @@ const Navbar = () => {
               <div className="user" onClick={toggleModal}>
                 <img src={currentUser?.img || "/img/noavatar.jpg"} alt="" />
                 <span>{currentUser?.userName}</span>
-                <div ref={modalRef} aria-hidden={open} className="options">
+                <div aria-hidden={open} className="options">
                   {currentUser?.isSeller && (
                     <>
                       <Link to="/myGigs">My Gigs</Link>

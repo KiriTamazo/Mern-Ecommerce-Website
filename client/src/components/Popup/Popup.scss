@@ -4,13 +4,14 @@
 .helper-popup {
   position: absolute;
   max-width: 250px;
-  bottom: 75px;
-  right: 20px;
+  bottom: 48px;
+  right: 8px;
   background-color: var(--modal-bg-color);
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
+  visibility: hidden;
   transform: translateY(30px);
   transition: all 0.3s ease-in-out;
 
@@ -27,6 +28,7 @@
 
   &.show {
     opacity: 1;
+    visibility: visible;
     transform: translateY(10px);
   }
 
@@ -45,9 +47,9 @@
   }
 }
 .helper-icon {
-  width: 50px;
+  width: 20px;
   border-radius: 50%;
-  
+
   color: var(--text-color);
   cursor: pointer;
   position: absolute;

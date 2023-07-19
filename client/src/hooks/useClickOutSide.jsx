@@ -1,19 +1,42 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-const useClickOutSide = (ref, handler) => {
+// const useClickOutSide = (ref, handler) => {
+//   useEffect(() => {
+//     const listener = (event) => {
+//       if (!ref.current || !ref.current.contains(event.target)) {
+//         return;
+//       }
+//       handler(event);
+//     };
+//     document.addEventListener("mousedown", listener);
+//     document.addEventListener("touchstart", listener);
+//     return () => {
+//       document.removeEventListener("mousedown", listener);
+//       document.removeEventListener("touchstart", listener);
+//     };
+//   }, [ref, handler]);
+// };
+// export default useClickOutSide;
+import { useEffect, useRef } from "react";
+
+const useClickOutside = (callback) => {
+  const ref = useRef();
+
+  const handleClick = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      callback();
+    }
+  };
+
   useEffect(() => {
-    const listener = (event) => {
-      if (!ref.current || !ref.current.contains(event.target)) {
-        return;
-      }
-      handler(event);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
+    document.addEventListener("click", handleClick);
+
     return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
+      document.removeEventListener("click", handleClick);
     };
-  }, [ref, handler]);
+  }, []);
+
+  return ref;
 };
-export default useClickOutSide;
+
+export default useClickOutside;

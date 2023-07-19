@@ -101,7 +101,7 @@ const Login = () => {
               {isSubmitting ? "Loading" : "Login"}
             </button>
             <Link to="/register" className="login-register-link">
-              Don't have an account yet? Sign up
+              Don't have an account yet? <span>Register</span>
             </Link>
           </form>
           <HelperPopup />
